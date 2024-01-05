@@ -1,0 +1,35 @@
+Day 1: "Trebuchet"
+- assert
+- pandas loading with new headers
+- regexp
+
+Day2 : "Cube Conundrum"
+- reading from file line by line, 
+- regexp, findall, .group()
+
+
+Day 23: Longest Path in a Graph 
+ - graph with edge lenghts
+ - stack processing
+ 
+ 
+ 
+ 
+ 
+ Day 25: 
+ 
+ 
+ USEFUL MAGICAL
+     1. numpy np.set_printoptions(threshold=sys.maxsize)
+     
+     2. operator.itemgetter(0)
+     2a. list(map(...,))
+     
+     7. sys.setrecursionlimit(20000)
+     
+     8. pd.read_csv("input.txt",header=None,names=["Coord"])
+ 
+ 
+ TODO
+ - implement Day25 explicitly 
+ - exceptions
