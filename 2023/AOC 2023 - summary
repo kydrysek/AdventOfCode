@@ -35,3 +35,4 @@ Day 23: Longest Path in a Graph
  TODO
  - implement Day25 explicitly 
  - exceptions
+ - Bellman-Ford, A*, flow algorithms
