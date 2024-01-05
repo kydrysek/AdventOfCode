@@ -12,7 +12,9 @@ Day 23: Longest Path in a Graph
  - graph with edge lenghts
  - stack processing
  
- 
+ Day 25:
+- NetworkX library for graph processing
+- Stoer-Wagner algorithm
  
  
  
