@@ -36,3 +36,6 @@ Day 23: Longest Path in a Graph
  - implement Day25 explicitly 
  - exceptions
  - Bellman-Ford, A*, flow algorithms
+ - error handling
+ - proper IDE
+ - return types
