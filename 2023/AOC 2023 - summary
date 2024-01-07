@@ -44,6 +44,7 @@ Day 23: Longest Path in a Graph
  - helpers 
    a) parsing input files imto lines without "\n", into numpy array, into pandas array
    b) combine results from multiple lines 
+   c) saving file back (normal; array into a smooth string; when too big)
 
 Check solutions of others
 - Day 5
