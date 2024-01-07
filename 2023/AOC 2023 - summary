@@ -40,6 +40,8 @@ Day 23: Longest Path in a Graph
  - proper IDE
  - return types
 
+ - helpers 
+   a) parsing input files imto lines without "\n", into numpy array, into pandas array
 
 Check solutions of others
 - Day 5
