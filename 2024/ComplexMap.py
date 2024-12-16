@@ -7,7 +7,16 @@ class ComplexMap():
         self.__map_set= set([(i+1j*j,element_type(lines[i][j])) for i in range(self.dim_X) for j in range(self.dim_Y)])
         self.__map_dict = {coord:val for coord,val in self.__map_set}
         self.__all_coords = set(coord for coord,_ in self.__map_set)
+        self.__element_type = element_type
         
+    def copy(self):
+        lines=self.print_me(do_print=False)
+        my_copy = ComplexMap(lines,self.__element_type,self.use_diag)
+        return my_copy
+
+    def get_value(self,coord,filler=None):
+        return self.__map_dict.get(coord,filler)
+    
     def map_as_set(self):
         return self.__map_set
 
@@ -29,6 +38,31 @@ class ComplexMap():
     @staticmethod
     def directions_updowndiag(cls):
         return cls.directions_diag.union(cls.directions_updown)
+
+    @staticmethod
+    def is_smaller(c1,c2):
+        return c1.real < c2.real and c1.imag < c2.imag
+
+    @staticmethod
+    def is_smaller_partial(c1,c2,check_real):
+        if check_real:
+            return c1.real < c2.real 
+        else:
+            return c1.imag < c2.imag
+
+    @staticmethod
+    def order_numbers(c_nums,direction):
+        """ 1: ascending, -1: descending
+            1j: ascending, -1j: edscending 
+        """
+
+        if direction.imag == 0:
+            order = sorted(c_nums,key=lambda x:direction.real*x.real)
+        else:
+            order = sorted(c_nums,key=lambda x: direction.imag*x.imag)
+        
+        return order
+    
     
     def are_neighbours(self,c1,c2):
         return (c1-c2) in self.get_neighbour_directions()
@@ -50,8 +84,28 @@ class ComplexMap():
         directions = self.get_neighbour_directions()
         res = set((x,val) for x,val in self.__map_set if (x-c1) in directions) 
         return res
-        
-        
+
+    def change_value_many(self,coord_val_pairs):
+        for coord,val in coord_val_pairs:
+            self.change_value(coord,val,update_map=False)
+        self.__map_set = set(self.__map_dict.items())
+    
+    def change_value(self,coord,val,update_map=True):
+        self.__map_dict[coord]=val
+        self.__map_set = set(self.__map_dict.items())
+
+    def print_me(self, do_print=True):
+        line = ["."]*self.dim_Y
+        area = [line.copy() for _ in range(self.dim_X)]
+        for coord,val in self.__map_dict.items():
+            line = area[int(coord.real)] 
+            line[int(coord.imag)]=val
+            area[int(coord.real)]=line
+        area_pr =["".join(l) for l in area]
+
+        if do_print:
+            print("\n".join(area_pr))
+        return area_pr
         
 # assert ComplexMap.are_neighbours_nodiag(2j,2j+1) == True
 # assert ComplexMap.are_neighbours_nodiag(2j,2j+2) == False
