@@ -106,6 +106,20 @@ class ComplexMap():
         if do_print:
             print("\n".join(area_pr))
         return area_pr
+
+    def get_edges_for_graph(self,vals_to_consider=None, includes_given=True):
+        res = set()
+        for (coord,val) in self.__map_set:
+            for n_coord,n_val in self.get_neighbours_withvals(coord):
+                add_edge = False
+                add_edge = add_edge or (includes_given and val in vals_to_consider and n_val in vals_to_consider)
+                add_edge = add_edge or (not includes_given and val not in vals_to_consider and n_val not in vals_to_consider)
+                # if not includes_given and coord.real < 3 and coord.imag < 3:
+                #     print(includes_given,(not includes_given and val not in vals_to_consider and n_val not in vals_to_consider))
+                if add_edge: res.add((coord,n_coord))
+                    
+        return res
+                    
         
 # assert ComplexMap.are_neighbours_nodiag(2j,2j+1) == True
 # assert ComplexMap.are_neighbours_nodiag(2j,2j+2) == False
